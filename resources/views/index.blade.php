@@ -1,23 +1,33 @@
-@extends('layout') 
+@extends('layout')
 
-@section('content') 
-
-    <form class="form-signin" action="{{route('calcular')}}" method="POST"> 
-        @csrf 
-        <div class="texto"> 
-            <h1 class="h3 mb-3 font-weight-normal">Calcular juros ao mês</h1> 
-        </div> 
-        <label for="capital" class="sr-only">Capital inicial: R$</label> 
-        <input type="number" id="capital" class="form-control" name="capital" 
-            placeholder="100.00" min="10" required autofocus> 
-        <label for="taxa" class="sr-only">Taxa fixa: %</label> 
-        <input type="number" id="number" class="form-control" name="taxa" 
-            placeholder="10" min="1" required> 
-        <label for="periodo" class="sr-only">Período de tempo: (meses)</label> 
-        <input type="number" id="number" class="form-control" name="periodo" 
-            placeholder="3" min="1" required> 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Calcular</button> 
-        <p class="mt-5 mb-3 text-muted">&copy; 2023</p> 
-    </form> 
-    
+@section('content')
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">SIMULADOR DE EMPRÉSTIMOS</h1>
+                    <form method="POST" action="{{ route('calcular') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="valor_emprestimo" class="form-label">Valor do Empréstimo</label>
+                            <input type="number" step="0.01" class="form-control" id="valor_emprestimo" name="valor_emprestimo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taxa_juros" class="form-label">Taxa de Juros (%)</label>
+                            <input type="number" step="0.01" class="form-control" id="taxa_juros" name="taxa_juros" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantidade_parcelas" class="form-label">Quantidade de Parcelas</label>
+                            <input type="number" class="form-control" id="quantidade_parcelas" name="quantidade_parcelas" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-100">Calcular</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
